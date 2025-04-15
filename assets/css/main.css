@@ -2879,143 +2879,214 @@ section,
 
 /* resposnive */
 
-/*--------------------------------------------------------------
-# Responsive Enhancements for EU-Mercosur Institute Website
---------------------------------------------------------------*/
-
-/* General Font Size Adjustments */
-@media (max-width: 768px) {
-  h1 { font-size: 30px; }
-  h2 { font-size: 26px; }
-  h3 { font-size: 22px; }
-  p, a, li, span { font-size: 16px; line-height: 1.6; }
+/* Add to main.css */
+@media (max-width: 1199px) {
+  section, .section {
+    padding: 80px 0;
+  }
+  
+  .hero {
+    padding: 60px 0;
+  }
 }
 
-/* Header Button & Logo Spacing */
-@media (max-width: 768px) {
-  .header .btn-getstarted {
-    padding: 6px 16px;
-    font-size: 14px;
+@media (max-width: 767px) {
+  section, .section {
+    padding: 60px 0;
   }
+  
+  .hero {
+    padding: 40px 0;
+  }
+  
+  .hero h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  
+  .hero p {
+    font-size: 18px;
+  }
+}
 
+@media (max-width: 575px) {
+  section, .section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    padding-bottom: 40px;
+  }
+  
+  .section-title h2 {
+    font-size: 28px;
+  }
+}
+
+/* Mobile navigation adjustments */
+@media (max-width: 1199px) {
+  .header {
+    padding: 15px 0;
+  }
+  
   .header .logo h1 {
     font-size: 20px;
     margin-left: 15px;
   }
+  
+  .header .btn-getstarted {
+    padding: 6px 15px;
+    font-size: 13px;
+  }
+  
+  .mobile-nav-toggle {
+    font-size: 24px;
+  }
 }
 
-/* Hero Section */
-@media (max-width: 768px) {
-  .hero {
-    padding: 60px 0;
-    min-height: 80vh;
+/* Hero section adjustments */
+@media (max-width: 767px) {
+  .hero .container {
     text-align: center;
   }
-
+  
+  .hero .col-lg-10 {
+    text-align: center;
+  }
+  
   .hero h2 {
     font-size: 28px;
   }
-
+  
   .hero p {
-    font-size: 18px;
-  }
-
-  .hero .sign-up-form {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero .sign-up-form input[type=email],
-  .hero .sign-up-form input[type=submit] {
-    width: 100%;
+    font-size: 16px;
   }
 }
 
-/* About Section (Flag Icons Side by Side -> Stack) */
-@media (max-width: 768px) {
-  .about .icon-boxes {
-    flex-direction: column;
-    align-items: center;
+/* About section adjustments */
+@media (max-width: 991px) {
+  .about .content {
+    text-align: center;
+    margin-bottom: 30px;
   }
-
+  
   .about .icon-box {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .about .icon-box img {
+    width: 150px;
+    height: 150px;
     margin-bottom: 20px;
   }
+  
+  .about .col-xl-6.d-flex {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
-/* Team Section Adjustments */
-@media (max-width: 768px) {
-  .team .member .member-img {
-    margin: 0 auto;
-    width: 180px;
-    height: 180px;
+/* Stats section adjustments */
+@media (max-width: 767px) {
+  .stats .stats-item {
+    padding: 15px;
   }
-
-  .team .member .member-info h4 {
-    font-size: 18px;
+  
+  .stats .stats-item span {
+    font-size: 36px;
   }
-
-  .team .member .member-info p {
+  
+  .stats .stats-item p {
     font-size: 14px;
   }
 }
 
-/* Services Icons Repositioning */
-@media (max-width: 768px) {
+/* Services section adjustments */
+@media (max-width: 767px) {
   .services .service-item {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+    padding-top: 30px;
   }
-
+  
   .services .service-item .icon {
-    margin-right: 0;
-    margin-bottom: 10px;
+    margin-right: 20px;
+  }
+  
+  .services .service-item .title {
+    font-size: 16px;
+  }
+  
+  .services .service-item .description {
+    font-size: 13px;
   }
 }
 
-/* Contact Form Optimization */
-@media (max-width: 768px) {
+/* Team section adjustments */
+@media (max-width: 991px) {
+  .team .member {
+    margin-bottom: 30px;
+  }
+  
+  .team .member .member-img {
+    margin: 0 auto;
+    width: 200px;
+  }
+  
+  .team .member .member-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .team .member .member-img {
+    width: 150px;
+  }
+}
+
+/* Contact section adjustments */
+@media (max-width: 767px) {
   .contact .info-item {
-    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
   }
-
-  .contact form {
-    padding-top: 20px;
+  
+  .contact .php-email-form {
+    padding: 20px;
   }
-
-  .contact form .form-control {
-    font-size: 15px;
-  }
-}
-
-/* Section Spacing and Padding */
-@media (max-width: 768px) {
-  section, .section {
-    padding: 60px 0;
-  }
-
-  .section-title {
-    padding-bottom: 40px;
-  }
-
-  .section-title h2 {
-    font-size: 26px;
+  
+  .contact .php-email-form button[type="submit"] {
+    width: 100%;
   }
 }
 
-/* Footer Layout */
-@media (max-width: 768px) {
+/* Footer adjustments */
+@media (max-width: 991px) {
+  .footer .footer-top {
+    padding-top: 30px;
+  }
+  
+  .footer .footer-about,
   .footer .footer-links,
-  .footer .footer-about {
+  .footer .footer-contact {
+    margin-bottom: 30px;
+  }
+  
+  .footer .copyright {
     text-align: center;
   }
+}
 
-  .footer .footer-about .logo span {
-    font-size: 24px;
+/* Form adjustments */
+@media (max-width: 575px) {
+  .php-email-form input[type="text"],
+  .php-email-form input[type="email"],
+  .php-email-form textarea {
+    padding: 8px 12px;
+    font-size: 14px;
   }
-
-  .footer .social-links {
-    justify-content: center;
+  
+  .php-email-form button[type="submit"] {
+    padding: 8px 20px;
+    font-size: 14px;
   }
 }
