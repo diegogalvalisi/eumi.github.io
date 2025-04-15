@@ -455,20 +455,30 @@
           </div>
 
           <div class="col-lg-6">
-            <form id="contact-form" action="https://formsubmit.co/diegogalvalisi@gmail.com" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <!-- Web3Forms required hidden fields -->
+              <input type="hidden" name="access_key" value="5bba2e92-fb03-4c8f-a75c-6648f26048d4">
+              <input type="hidden" name="subject" value="New Contact Message from Website">
+              <input type="hidden" name="from_name" value="Website Contact Form">
+              <input type="text" name="botcheck" style="display:none;"> <!-- Honeypot -->
+            
               <div class="row gy-4">
                 <div class="col-md-6">
                   <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                 </div>
+            
                 <div class="col-md-6">
-                  <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                 </div>
+            
                 <div class="col-12">
-                  <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
                 </div>
+            
                 <div class="col-12">
-                  <textarea name="message" class="form-control" rows="6" placeholder="Message" required></textarea>
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
                 </div>
+            
                 <div class="col-12 text-center">
                   <div class="loading" style="display: none;">Loading</div>
                   <div class="error-message" style="display: none; color: red;"></div>
@@ -477,6 +487,7 @@
                 </div>
               </div>
             </form>
+            
             
           </div><!-- End Contact Form -->
 
@@ -566,48 +577,48 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById("contact-form");
-      const loading = form.querySelector(".loading");
-      const errorMessage = form.querySelector(".error-message");
-      const sentMessage = form.querySelector(".sent-message");
-    
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-    
-        // Show loading indicator
-        loading.style.display = "block";
-        errorMessage.style.display = "none";
-        sentMessage.style.display = "none";
-    
-        const formData = new FormData(form);
-    
-        fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => {
-          loading.style.display = "none";
-          if (response.ok) {
-            sentMessage.style.display = "block";
+    const form = document.getElementById('newsletter-form');
+    const loading = form.querySelector('.loading');
+    const errorMessage = form.querySelector('.error-message');
+    const sentMessage = form.querySelector('.sent-message');
+  
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+  
+      loading.style.display = 'block';
+      errorMessage.style.display = 'none';
+      sentMessage.style.display = 'none';
+  
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          loading.style.display = 'none';
+          if (data.success) {
+            sentMessage.style.display = 'block';
             form.reset();
           } else {
-            return response.json().then(data => {
-              throw new Error(data.message || "There was a problem submitting your form.");
-            });
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = data.message || 'Something went wrong. Please try again.';
           }
         })
-        .catch(error => {
-          loading.style.display = "none";
-          errorMessage.textContent = error.message;
-          errorMessage.style.display = "block";
+        .catch((error) => {
+          loading.style.display = 'none';
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Network error. Please try again later.';
         });
-      });
     });
-    </script>
+  </script>
+  
     
 </body>
 
