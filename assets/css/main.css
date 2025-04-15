@@ -3077,7 +3077,7 @@ section,
   .footer .copyright {
     text-align: center;
   }
-  .footer-contact, .footer-links, #team,{
+  .footer-contact, .footer-links, #team{
     display: none;
   }
 }
