@@ -2982,7 +2982,6 @@ section,
   }
   
   .about .col-xl-6.d-flex {
-    flex-direction: column;
     gap: 20px;
   }
 }
@@ -3010,6 +3009,10 @@ section,
   
   .services .service-item .icon {
     margin-right: 20px;
+  }
+
+  .services .service-item .icon i {
+    font-size: 3rem;
   }
   
   .services .service-item .title {
@@ -3073,6 +3076,9 @@ section,
   
   .footer .copyright {
     text-align: center;
+  }
+  .footer-contact, .footer-links, #team, .stats{
+    display: none;
   }
 }
 
