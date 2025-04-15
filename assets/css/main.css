@@ -3077,7 +3077,7 @@ section,
   .footer .copyright {
     text-align: center;
   }
-  .footer-contact, .footer-links, #team, .stats{
+  .footer-contact, .footer-links, #team,{
     display: none;
   }
 }
@@ -3094,5 +3094,50 @@ section,
   .php-email-form button[type="submit"] {
     padding: 8px 20px;
     font-size: 14px;
+  }
+}
+
+/* Stats Section - Horizontal Layout for Mobile */
+@media (max-width: 767px) {
+  .stats .row.gy-4 {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    margin: 0 -15px; /* Add some negative margin to account for container padding */
+  }
+
+  .stats .row.gy-4::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+  }
+
+  .stats .row.gy-4 > .col-lg-3 {
+    flex: 0 0 auto;
+    width: 50%; /* Show 2 items at a time on small devices */
+    padding: 0 8px; /* Add some spacing between items */
+    scroll-snap-align: start; /* For better scrolling experience */
+  }
+
+  .stats .stats-item {
+    padding: 20px 15px;
+    min-width: 140px; /* Ensure items have minimum width */
+    text-align: center;
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
+
+  .stats .stats-item span {
+    font-size: 36px;
+  }
+
+  .stats .stats-item p {
+    font-size: 14px;
+  }
+}
+
+/* Adjust for slightly larger mobile devices */
+@media (min-width: 576px) and (max-width: 767px) {
+  .stats .row.gy-4 > .col-lg-3 {
+    width: 25%; /* Show 4 items in a row when space allows */
   }
 }
