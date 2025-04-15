@@ -455,41 +455,48 @@
           </div>
 
           <div class="col-lg-6">
-            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <!-- Web3Forms required hidden fields -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" class="php-email-form needs-validation" novalidate data-aos="fade-up" data-aos-delay="200">
+          
+              <!-- Web3Forms hidden fields -->
               <input type="hidden" name="access_key" value="5bba2e92-fb03-4c8f-a75c-6648f26048d4">
               <input type="hidden" name="subject" value="New Contact Message from Website">
               <input type="hidden" name="from_name" value="Website Contact Form">
-              <input type="text" name="botcheck" style="display:none;"> <!-- Honeypot -->
-            
+              <input type="checkbox" name="botcheck" style="display: none;">
+          
               <div class="row gy-4">
+          
+                <!-- Name Input -->
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
                 </div>
-            
+          
+                <!-- Email Input -->
                 <div class="col-md-6">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                  <input type="email" name="email" class="form-control" placeholder="Your Email" required="">
                 </div>
-            
+          
+                <!-- Subject Input -->
                 <div class="col-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                  <input type="text" name="subject" class="form-control" placeholder="Subject" required="">
                 </div>
-            
+          
+                <!-- Message Textarea -->
                 <div class="col-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  <textarea name="message" class="form-control" rows="6" placeholder="Message" required=""></textarea>
                 </div>
-            
+          
+                <!-- Submit Button -->
                 <div class="col-12 text-center">
-                  <div class="loading" style="display: none;">Loading</div>
-                  <div class="error-message" style="display: none; color: red;"></div>
-                  <div class="sent-message" style="display: none; color: green;">Your message has been sent. Thank you!</div>
-                  <button type="submit">Send Message</button>
+                  <button type="submit" class="focus:outline-none">
+                    Send Message
+                  </button>
+                  <p class="text-base text-center text-gray-400" id="result" style="margin-top: 10px;"></p>
                 </div>
+          
               </div>
             </form>
-            
-            
-          </div><!-- End Contact Form -->
+          </div>
+          
 
         </div>
 
@@ -576,50 +583,77 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+ 
   <script>
-    const form = document.getElementById('newsletter-form');
-    const loading = form.querySelector('.loading');
-    const errorMessage = form.querySelector('.error-message');
-    const sentMessage = form.querySelector('.sent-message');
+    (function () {
+      "use strict";
+      /*
+       * Form Validation
+       */
+      const forms = document.querySelectorAll(".needs-validation");
+      const result = document.getElementById("result");
   
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+              form.querySelectorAll(":invalid")[0].focus();
+            } else {
+              const formData = new FormData(form);
+              event.preventDefault();
+              event.stopPropagation();
+              const object = {};
+              formData.forEach((value, key) => {
+                object[key] = value;
+              });
+              const json = JSON.stringify(object);
+              result.innerHTML = "Please wait...";
   
-      const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-  
-      loading.style.display = 'block';
-      errorMessage.style.display = 'none';
-      sentMessage.style.display = 'none';
-  
-      fetch(form.action, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: json,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          loading.style.display = 'none';
-          if (data.success) {
-            sentMessage.style.display = 'block';
-            form.reset();
-          } else {
-            errorMessage.style.display = 'block';
-            errorMessage.textContent = data.message || 'Something went wrong. Please try again.';
-          }
-        })
-        .catch((error) => {
-          loading.style.display = 'none';
-          errorMessage.style.display = 'block';
-          errorMessage.textContent = 'Network error. Please try again later.';
-        });
-    });
+              fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: json,
+              })
+                .then(async (response) => {
+                  let json = await response.json();
+                  if (response.status == 200) {
+                    result.innerHTML = json.message;
+                    result.classList.remove("text-gray-500");
+                    result.classList.add("text-green-500");
+                  } else {
+                    console.log(response);
+                    result.innerHTML = json.message;
+                    result.classList.remove("text-gray-500");
+                    result.classList.add("text-red-500");
+                  }
+                })
+                .catch((error) => {
+                  console.log(error);
+                  result.innerHTML = "Something went wrong!";
+                })
+                .then(function () {
+                  form.reset();
+                  form.classList.remove("was-validated");
+                  setTimeout(() => {
+                    result.style.display = "none";
+                  }, 5000);
+                });
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    })();
   </script>
   
-    
+
 </body>
 
 </html>
