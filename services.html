@@ -287,19 +287,41 @@
     const links = document.querySelectorAll('.service-link');
     const contents = document.querySelectorAll('.service-content');
   
+    function showService(id) {
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-target') === id) {
+          link.classList.add('active');
+        }
+      });
+  
+      contents.forEach(content => {
+        content.style.display = content.id === id ? 'block' : 'none';
+      });
+    }
+  
+    // Run on initial load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.substring(1); // Remove the #
+        showService(id);
+      } else {
+        showService('service1'); // Default section
+      }
+    });
+  
+    // Run on menu link click
     links.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
-  
-        links.forEach(l => l.classList.remove('active'));
-        contents.forEach(c => c.style.display = 'none');
-  
-        this.classList.add('active');
         const targetId = this.getAttribute('data-target');
-        document.getElementById(targetId).style.display = 'block';
+        history.replaceState(null, '', '#' + targetId);
+        showService(targetId);
       });
     });
   </script>
+  
   
 </body>
 
