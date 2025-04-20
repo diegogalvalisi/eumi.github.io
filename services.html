@@ -98,10 +98,10 @@
             <div class="service-box">
               <h4>Services List</h4>
               <div class="services-list">
-                <a href="#" class="service-link active" data-target="service1"><i class="bi bi-arrow-right-circle"></i><span> Research</span></a>
-                <a href="#" class="service-link" data-target="service2"><i class="bi bi-arrow-right-circle"></i><span> Consulting</span></a>
-                <a href="#" class="service-link" data-target="service3"><i class="bi bi-arrow-right-circle"></i><span> Advocacy</span></a>
-                <a href="#" class="service-link" data-target="service4"><i class="bi bi-arrow-right-circle"></i><span> Formation</span></a>
+                <a href="#" class="service-link active" data-target="research"><i class="bi bi-arrow-right-circle"></i><span> Research</span></a>
+                <a href="#" class="service-link" data-target="consulting"><i class="bi bi-arrow-right-circle"></i><span> Consulting</span></a>
+                <a href="#" class="service-link" data-target="advocacy"><i class="bi bi-arrow-right-circle"></i><span> Advocacy</span></a>
+                <a href="#" class="service-link" data-target="formation"><i class="bi bi-arrow-right-circle"></i><span> Formation</span></a>
               </div>
             </div>
     
@@ -122,7 +122,7 @@
           </div>
     
           <!-- Service Content Sections -->
-          <div class="col-lg-8 ps-lg-5 service-content" id="service1" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-8 ps-lg-5 service-content" id="research" data-aos="fade-up" data-aos-delay="200">
             <h3>Specialized Research</h3>
             <p>
               We offer research in fields and areas related to European Union–MERCOSUR topics, guided by our mission-driven approach and aimed at advancing general knowledge on the subject:
@@ -143,7 +143,7 @@
             </p>
           </div>
     
-          <div class="col-lg-8 ps-lg-5 service-content" id="service2" data-aos="fade-up" data-aos-delay="200" style="display: none;">
+          <div class="col-lg-8 ps-lg-5 service-content" id="consulting" data-aos="fade-up" data-aos-delay="200" style="display: none;">
             <h3>Policy Consulting & Strategic Guidance</h3>
             <p>
               We offer close head-by-head, collaborative consulting services to public institutions, civil society organizations, and businesses seeking to strengthen or initiate actions related to EU–MERCOSUR relations.
@@ -162,7 +162,7 @@
             </p>
           </div>
     
-          <div class="col-lg-8 ps-lg-5 service-content" id="service3" data-aos="fade-up" data-aos-delay="200" style="display: none;">
+          <div class="col-lg-8 ps-lg-5 service-content" id="advocacy" data-aos="fade-up" data-aos-delay="200" style="display: none;">
             <h3>Advocacy & Public Engagement</h3>
             <p>
               We lead advocacy initiatives that promote the strengthening and deepening of the EU–MERCOSUR partnership across multiple fronts.
@@ -181,7 +181,7 @@
           </div>
           
     
-          <div class="col-lg-8 ps-lg-5 service-content" id="service4" data-aos="fade-up" data-aos-delay="200" style="display: none;">
+          <div class="col-lg-8 ps-lg-5 service-content" id="formation" data-aos="fade-up" data-aos-delay="200" style="display: none;">
             <h3>Training & Capacity Building</h3>
             <p>
               We are committed to sharing our knowledge, tools and general experience to other people and organizations that seek to improve their  understanding and action towards the enhancement of the general EU-Mercosur relations and the topics that it concerns. By the provision of different services:
@@ -214,8 +214,9 @@
           <a href="index.html" class="logo d-flex align-items-center">
             <span class="sitename">EUMI</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>The EU-Mercosur Institute, as a bi-regional research organization, works to bridge knowledge in support of advancing the EU-Mercosur partnership</p>
           <div class="social-links d-flex mt-4">
+
             <a href=""><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
@@ -223,29 +224,28 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Research</a></li>
-            <li><a href="#">Consulting</a></li>
-            <li><a href="#">Advocacy</a></li>
-            <li><a href="#">Formation</a></li>
+            <li><a href="services.html#reserach">Research</a></li>
+            <li><a href="services.html#consulting">Consulting</a></li>
+            <li><a href="services.html#advocacy">Advocacy</a></li>
+            <li><a href="services.html#formation">Formation</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
-          <p>Reconquista 268</p>
-          <p>Montevideo, CP 535022</p>
+          <p>Montevideo, CP 11000</p>
           <p>Uruguay</p>
-          <p class="mt-4"><span>contact@eu-mercosur.institute</span></p>
+          <p class="mt-4"><span><a href="mailto:contact@eu-mercosur.institute">contact@eu-mercosur.institute</a></span></p>
          </div>
 
       </div>
@@ -307,7 +307,7 @@
         const id = hash.substring(1); // Remove the #
         showService(id);
       } else {
-        showService('service1'); // Default section
+        showService('research'); // Default section
       }
     });
   
